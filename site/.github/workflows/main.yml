@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: docker build -t containers08 .
+
+      - run: docker create --name container --volume database:/var/www/db containers08
+
+      - run: docker cp ./tests container:/var/www/html
+
+      - run: docker start container
+
+      - run: docker exec container php /var/www/html/tests/tests.php
+
+      - run: docker stop container
+      - run: docker rm container
