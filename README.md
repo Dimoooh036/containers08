@@ -329,6 +329,11 @@ jobs:
 
     Запуск и Тестирование:
 
+  git add .
+  git commit -m "CI setup"
+  git push
+
+  ![scr1](Screenshot_1.png)
 
 ### Ответы на вопросы:
 
