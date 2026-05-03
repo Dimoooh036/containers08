@@ -3,8 +3,8 @@
 class Database {
     private $pdo;
 
-    public function __construct($path) {
-        $this->pdo = new PDO("sqlite:" . $path);
+    public function __construct(string $dsn, string $username, string $password) {
+        $this->pdo = new PDO($dsn, $username, $password);
     }
 
     public function Execute($sql) {
